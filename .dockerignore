@@ -4,6 +4,7 @@ docker-compose-dev.yaml
 
 # Ignore development Dockerfile
 Dockerfile
+!Dockerfile.local
 Dockerfile.dev
 docker-dev.sh
 

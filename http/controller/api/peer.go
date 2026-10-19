@@ -30,6 +30,11 @@ func (p *Peer) SysInfo(c *gin.Context) {
 		response.Error(c, response.TranslateMsg(c, "ParamsError")+err.Error())
 		return
 	}
+	// Real clients always send their id and uuid; anything else would create a blank device row.
+	if f.Id == "" || f.Uuid == "" {
+		c.String(http.StatusBadRequest, "ID_OR_UUID_MISSING")
+		return
+	}
 	fpe := f.ToPeer()
 	pe := service.AllService.PeerService.FindById(f.Id)
 	if pe.RowId == 0 {
@@ -41,6 +46,12 @@ func (p *Peer) SysInfo(c *gin.Context) {
 			return
 		}
 	} else {
+		// Security fix for CVE-2026-111324: /api/sysinfo needs no login, so an existing device may only be
+		// updated by a request that carries that device's own uuid (the client always sends it).
+		if pe.Uuid != "" && fpe.Uuid != pe.Uuid {
+			c.String(http.StatusForbidden, "UUID_MISMATCH")
+			return
+		}
 		if pe.UserId == 0 {
 			pe.UserId = service.AllService.UserService.FindLatestUserIdFromLoginLogByUuid(pe.Uuid, pe.Id)
 		}

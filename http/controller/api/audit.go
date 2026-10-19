@@ -33,6 +33,12 @@ func (a *Audit) AuditConn(c *gin.Context) {
 	/*ttt := &gin.H{}
 	c.ShouldBindBodyWith(ttt, binding.JSON)
 	fmt.Println(ttt)*/
+	// Same unauthenticated-endpoint problem as CVE-2026-111324: only accept audit records from a known device
+	// that presents its own uuid, so nobody can forge or close connection logs for other devices.
+	if !auditFromKnownPeer(af.Id, af.Uuid) {
+		response.Success(c, "")
+		return
+	}
 	ac := af.ToAuditConn()
 	if af.Action == model.AuditActionNew {
 		service.AllService.AuditService.CreateAuditConn(ac)
@@ -78,7 +84,20 @@ func (a *Audit) AuditFile(c *gin.Context) {
 	//ttt := &gin.H{}
 	//c.ShouldBindBodyWith(ttt, binding.JSON)
 	//fmt.Println(ttt)
+	if !auditFromKnownPeer(aff.Id, aff.Uuid) {
+		response.Success(c, "")
+		return
+	}
 	af := aff.ToAuditFile()
 	service.AllService.AuditService.CreateAuditFile(af)
 	response.Success(c, "")
+}
+
+// auditFromKnownPeer reports whether id is a registered device whose stored uuid equals uuid.
+func auditFromKnownPeer(id, uuid string) bool {
+	if id == "" || uuid == "" {
+		return false
+	}
+	pe := service.AllService.PeerService.FindById(id)
+	return pe != nil && pe.RowId != 0 && pe.Uuid == uuid
 }
