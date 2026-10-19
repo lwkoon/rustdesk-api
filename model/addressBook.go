@@ -17,7 +17,7 @@ import "github.com/lejianwen/rustdesk-api/v2/model/custom_types"
 // String loginName; //login username
 // bool? sameServer;
 
-// AddressBook 有些字段是Personal才会上传的
+// AddressBook some fields are only uploaded by Personal
 type AddressBook struct {
 	RowId            uint                   `gorm:"primaryKey" json:"row_id"`
 	Id               string                 `json:"id" gorm:"default:0;not null;index"`
@@ -59,8 +59,8 @@ type AddressBookCollectionRule struct {
 	IdModel
 	UserId       uint `json:"user_id" gorm:"default:0;not null;"`
 	CollectionId uint `json:"collection_id" gorm:"default:0;not null;index" validate:"required"`
-	Rule         int  `json:"rule" gorm:"default:0;not null;" validate:"required,gte=1,lte=3"` // 0: 无 1: 读 2: 读写  3: 完全控制
-	Type         int  `json:"type" gorm:"default:1;not null;" validate:"required,gte=1,lte=2"` // 1: 个人 2: 群组
+	Rule         int  `json:"rule" gorm:"default:0;not null;" validate:"required,gte=1,lte=3"` // 0: none 1: read 2: read/write  3: full control
+	Type         int  `json:"type" gorm:"default:1;not null;" validate:"required,gte=1,lte=2"` // 1: personal 2: group
 	ToId         uint `json:"to_id" gorm:"default:0;not null;" validate:"required,gt=0"`
 	TimeModel
 }

@@ -10,7 +10,7 @@ type Handler interface {
 	Gc() error
 }
 
-// MaxTimeOut 最大超时时间
+// MaxTimeOut maximum timeout
 
 const (
 	TypeMem    = "memory"
@@ -49,7 +49,7 @@ func EncodeValue(value interface{}) (string, error) {
 }
 
 func DecodeValue(value string, rtv interface{}) error {
-	//判断rtv的类型是否是string，如果是string，直接赋值并返回
+	//check whether rtv is a string; if so, assign it directly and return
 	/*switch rtv.(type) {
 	case *string:
 		*(rtv.(*string)) = value

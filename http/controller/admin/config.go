@@ -13,10 +13,10 @@ import (
 type Config struct {
 }
 
-// ServerConfig RUSTDESK服务配置
+// ServerConfig RUSTDESK service config
 // @Tags ADMIN
-// @Summary RUSTDESK服务配置
-// @Description 服务配置,给webclient提供api-server
+// @Summary RUSTDESK service config
+// @Description Server config, provides the api-server to the webclient
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} response.Response
@@ -33,10 +33,10 @@ func (co *Config) ServerConfig(c *gin.Context) {
 	response.Success(c, cf)
 }
 
-// AppConfig APP服务配置
+// AppConfig APP service config
 // @Tags ADMIN
-// @Summary APP服务配置
-// @Description APP服务配置
+// @Summary APP service config
+// @Description APP service config
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} response.Response
@@ -49,10 +49,10 @@ func (co *Config) AppConfig(c *gin.Context) {
 	})
 }
 
-// AdminConfig ADMIN服务配置
+// AdminConfig ADMIN service config
 // @Tags ADMIN
-// @Summary ADMIN服务配置
-// @Description ADMIN服务配置
+// @Summary ADMIN service config
+// @Description ADMIN service config
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} response.Response

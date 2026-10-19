@@ -1,5 +1,5 @@
-# Local security build of rustdesk-api v2.7 (branch local-security). Only /app/apimain is rebuilt from this tree;
-# resources, admin UI and config come unchanged from the official image.
+# Local security build of rustdesk-api v2.7 (branch local-security). /app/apimain is rebuilt from this tree and the
+# English admin welcome text (conf/admin/hello.html) is copied in; everything else comes from the official image.
 #   docker build -f Dockerfile.local -t rustdesk-api-local:v2.7-sec1 .
 FROM golang:1.23-alpine AS build
 RUN apk add --no-cache gcc musl-dev
@@ -10,3 +10,4 @@ RUN go mod tidy && CGO_ENABLED=1 GOOS=linux go build -trimpath -ldflags "-s -w" 
 
 FROM lejianwen/rustdesk-api:v2.7
 COPY --from=build /apimain /app/apimain
+COPY conf/admin/hello.html /app/conf/admin/hello.html

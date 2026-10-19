@@ -12,15 +12,15 @@ import (
 
 type AddressBook struct{}
 
-// List 列表
-// @Tags 我的地址簿
-// @Summary 地址簿列表
-// @Description 地址簿列表
+// List list
+// @Tags My address book
+// @Summary Address book list
+// @Description Address book list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param user_id query int false "用户id"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param user_id query int false "User id"
 // @Success 200 {object} response.Response{data=model.AddressBookList}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/address_book/list [get]
@@ -34,7 +34,7 @@ func (ct *AddressBook) List(c *gin.Context) {
 	u := service.AllService.UserService.CurUser(c)
 	query.UserId = int(u.Id)
 	res := service.AllService.AddressBookService.List(query.Page, query.PageSize, func(tx *gorm.DB) {
-		//预加载地址簿名称
+		//preload the address book names
 		tx.Preload("Collection", func(txc *gorm.DB) *gorm.DB {
 			return txc.Select("id,name")
 		})
@@ -60,13 +60,13 @@ func (ct *AddressBook) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Create 创建地址簿
-// @Tags 我的地址簿
-// @Summary 创建地址簿
-// @Description 创建地址簿
+// Create create address book
+// @Tags My address book
+// @Summary Create address book
+// @Description Create address book
 // @Accept  json
 // @Produce  json
-// @Param body body admin.AddressBookForm true "地址簿信息"
+// @Param body body admin.AddressBookForm true "Address book info"
 // @Success 200 {object} response.Response{data=model.AddressBook}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/address_book/create [post]
@@ -104,13 +104,13 @@ func (ct *AddressBook) Create(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Update 编辑
-// @Tags 我的地址簿
-// @Summary 地址簿编辑
-// @Description 地址簿编辑
+// Update edit
+// @Tags My address book
+// @Summary Address book edit
+// @Description Address book edit
 // @Accept  json
 // @Produce  json
-// @Param body body admin.AddressBookForm true "地址簿信息"
+// @Param body body admin.AddressBookForm true "Address book info"
 // @Success 200 {object} response.Response{data=model.AddressBook}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/address_book/update [post]
@@ -158,13 +158,13 @@ func (ct *AddressBook) Update(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Delete 删除
-// @Tags 我的地址簿
-// @Summary 地址簿删除
-// @Description 地址簿删除
+// Delete delete
+// @Tags My address book
+// @Summary Address book delete
+// @Description Address book delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.AddressBookForm true "地址簿信息"
+// @Param body body admin.AddressBookForm true "Address book info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/my/address_book/delete [post]

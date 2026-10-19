@@ -58,7 +58,7 @@ func (a *Admin) Init() {
 	}
 }
 
-// Init 初始化配置
+// Init initialize the config
 func Init(rowVal *Config, path string) *viper.Viper {
 	if path == "" {
 		path = DefaultConfig
@@ -77,9 +77,9 @@ func Init(rowVal *Config, path string) *viper.Viper {
 		v.WatchConfig()
 
 
-			//监听配置修改没什么必要
+			//watching the config for changes is not really needed
 			v.OnConfigChange(func(e fsnotify.Event) {
-				//配置文件修改监听
+				//watch the config file for changes
 				fmt.Println("config file changed:", e.Name)
 				if err2 := v.Unmarshal(rowVal); err2 != nil {
 					fmt.Println(err2)
@@ -96,7 +96,7 @@ func Init(rowVal *Config, path string) *viper.Viper {
 	return v
 }
 
-// ReadEnv 读取环境变量
+// ReadEnv read environment variables
 func ReadEnv(rowVal interface{}) *viper.Viper {
 	v := viper.New()
 	v.AutomaticEnv()

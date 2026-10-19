@@ -10,10 +10,10 @@ import (
 type User struct {
 }
 
-// currentUser 当前用户
-// @Tags 用户
-// @Summary 用户信息
-// @Description 用户信息
+// currentUser current user
+// @Tags User
+// @Summary User info
+// @Description User info
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} apiResp.UserPayload
@@ -26,10 +26,10 @@ type User struct {
 //	c.JSON(http.StatusOK, up)
 //}
 
-// Info 用户信息
-// @Tags 用户
-// @Summary 用户信息
-// @Description 用户信息
+// Info user info
+// @Tags User
+// @Summary User info
+// @Description User info
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} apiResp.UserPayload

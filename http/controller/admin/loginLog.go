@@ -14,10 +14,10 @@ import (
 type LoginLog struct {
 }
 
-// Detail 登录日志
-// @Tags 登录日志
-// @Summary 登录日志详情
-// @Description 登录日志详情
+// Detail login log
+// @Tags Login log
+// @Summary Login log detail
+// @Description Login log detail
 // @Accept  json
 // @Produce  json
 // @Param id path int true "ID"
@@ -37,15 +37,15 @@ func (ct *LoginLog) Detail(c *gin.Context) {
 	return
 }
 
-// List 列表
-// @Tags 登录日志
-// @Summary 登录日志列表
-// @Description 登录日志列表
+// List list
+// @Tags Login log
+// @Summary Login log list
+// @Description Login log list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param user_id query int false "用户ID"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param user_id query int false "User ID"
 // @Success 200 {object} response.Response{data=model.LoginLogList}
 // @Failure 500 {object} response.Response
 // @Router /admin/login_log/list [get]
@@ -65,13 +65,13 @@ func (ct *LoginLog) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Delete 删除
-// @Tags 登录日志
-// @Summary 登录日志删除
-// @Description 登录日志删除
+// Delete delete
+// @Tags Login log
+// @Summary Login log delete
+// @Description Login log delete
 // @Accept  json
 // @Produce  json
-// @Param body body model.LoginLog true "登录日志信息"
+// @Param body body model.LoginLog true "Login log info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/login_log/delete [post]
@@ -101,13 +101,13 @@ func (ct *LoginLog) Delete(c *gin.Context) {
 	response.Fail(c, 101, err.Error())
 }
 
-// BatchDelete 删除
-// @Tags 登录日志
-// @Summary 登录日志批量删除
-// @Description 登录日志批量删除
+// BatchDelete delete
+// @Tags Login log
+// @Summary Login log batch delete
+// @Description Login log batch delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.LoginLogIds true "登录日志"
+// @Param body body admin.LoginLogIds true "Login logs"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/login_log/batchDelete [post]

@@ -16,10 +16,10 @@ import (
 type User struct {
 }
 
-// Detail 管理员
-// @Tags 用户
-// @Summary 管理员详情
-// @Description 管理员详情
+// Detail admin
+// @Tags User
+// @Summary Admin detail
+// @Description Admin detail
 // @Accept  json
 // @Produce  json
 // @Param id path int true "ID"
@@ -39,13 +39,13 @@ func (ct *User) Detail(c *gin.Context) {
 	return
 }
 
-// Create 管理员
-// @Tags 用户
-// @Summary 创建管理员
-// @Description 创建管理员
+// Create admin
+// @Tags User
+// @Summary Create admin
+// @Description Create admin
 // @Accept  json
 // @Produce  json
-// @Param body body admin.UserForm true "管理员信息"
+// @Param body body admin.UserForm true "Admin info"
 // @Success 200 {object} response.Response{data=model.User}
 // @Failure 500 {object} response.Response
 // @Router /admin/user/create [post]
@@ -70,15 +70,15 @@ func (ct *User) Create(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// List 列表
-// @Tags 用户
-// @Summary 管理员列表
-// @Description 管理员列表
+// List list
+// @Tags User
+// @Summary Admin list
+// @Description Admin list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param username query int false "账户"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param username query int false "Account"
 // @Success 200 {object} response.Response{data=model.UserList}
 // @Failure 500 {object} response.Response
 // @Router /admin/user/list [get]
@@ -97,13 +97,13 @@ func (ct *User) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Update 编辑
-// @Tags 用户
-// @Summary 管理员编辑
-// @Description 管理员编辑
+// Update edit
+// @Tags User
+// @Summary Admin edit
+// @Description Admin edit
 // @Accept  json
 // @Produce  json
-// @Param body body admin.UserForm true "用户信息"
+// @Param body body admin.UserForm true "User info"
 // @Success 200 {object} response.Response{data=model.User}
 // @Failure 500 {object} response.Response
 // @Router /admin/user/update [post]
@@ -132,13 +132,13 @@ func (ct *User) Update(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Delete 删除
-// @Tags 用户
-// @Summary 管理员删除
-// @Description 管理员编删除
+// Delete delete
+// @Tags User
+// @Summary Admin delete
+// @Description Admin delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.UserForm true "用户信息"
+// @Param body body admin.UserForm true "User info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/user/delete [post]
@@ -168,13 +168,13 @@ func (ct *User) Delete(c *gin.Context) {
 	response.Fail(c, 101, response.TranslateMsg(c, "ItemNotFound"))
 }
 
-// UpdatePassword 修改密码
-// @Tags 用户
-// @Summary 修改密码
-// @Description 修改密码
+// UpdatePassword change password
+// @Tags User
+// @Summary Change password
+// @Description Change password
 // @Accept  json
 // @Produce  json
-// @Param body body admin.UserPasswordForm true "用户信息"
+// @Param body body admin.UserPasswordForm true "User info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/user/updatePassword [post]
@@ -203,10 +203,10 @@ func (ct *User) UpdatePassword(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Current 当前用户
-// @Tags 用户
-// @Summary 当前用户
-// @Description 当前用户
+// Current current user
+// @Tags User
+// @Summary Current user
+// @Description Current user
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} response.Response{data=adResp.LoginPayload}
@@ -220,13 +220,13 @@ func (ct *User) Current(c *gin.Context) {
 	responseLoginSuccess(c, u, t)
 }
 
-// ChangeCurPwd 修改当前用户密码
-// @Tags 用户
-// @Summary 修改当前用户密码
-// @Description 修改当前用户密码
+// ChangeCurPwd change the current user's password
+// @Tags User
+// @Summary Change the current user's password
+// @Description Change the current user's password
 // @Accept  json
 // @Produce  json
-// @Param body body admin.ChangeCurPasswordForm true "用户信息"
+// @Param body body admin.ChangeCurPasswordForm true "User info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/user/changeCurPwd [post]
@@ -261,9 +261,9 @@ func (ct *User) ChangeCurPwd(c *gin.Context) {
 }
 
 // MyOauth
-// @Tags 用户
-// @Summary 我的授权
-// @Description 我的授权
+// @Tags User
+// @Summary My authorizations
+// @Description My authorizations
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} response.Response{data=[]adResp.UserOauthItem}
@@ -321,7 +321,7 @@ func (ct *User) Register(c *gin.Context) {
 		return
 	}
 	regStatus := model.StatusCode(global.Config.App.RegisterStatus)
-	// 注册状态可能未配置，默认启用
+	// registration may not be configured; enabled by default
 	if regStatus != model.COMMON_STATUS_DISABLED && regStatus != model.COMMON_STATUS_ENABLE {
 		regStatus = model.COMMON_STATUS_ENABLE
 	}
@@ -332,11 +332,11 @@ func (ct *User) Register(c *gin.Context) {
 		return
 	}
 	if regStatus == model.COMMON_STATUS_DISABLED {
-		// 需要管理员审核
+		// needs admin approval
 		response.Fail(c, 101, response.TranslateMsg(c, "RegisterSuccessWaitAdminConfirm"))
 		return
 	}
-	// 注册成功后自动登录
+	// log in automatically after a successful registration
 	ut := service.AllService.UserService.Login(u, &model.LoginLog{
 		UserId: u.Id,
 		Client: model.LoginLogClientWebAdmin,

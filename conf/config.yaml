@@ -1,18 +1,18 @@
 lang: "zh-CN"
 app:
-  web-client: 1  # 1:启用 0:禁用
-  register: false #是否开启注册
-  register-status: 1 # 注册用户默认状态 1:启用 2:禁用
+  web-client: 1  # 1: enabled 0: disabled
+  register: false # allow self-registration
+  register-status: 1 # default status of registered users 1: enabled 2: disabled
   captcha-threshold: 3 #   <0:disabled, 0 always, >0:enabled
   ban-threshold: 0 # 0:disabled, >0:enabled
-  show-swagger: 0 # 1:启用 0:禁用
+  show-swagger: 0 # 1: enabled 0: disabled
   token-expire: 168h
   web-sso: true #web auth sso
-  disable-pwd-login: false #禁用密码登录
+  disable-pwd-login: false # disable password login
 
 admin:
   title: "RustDesk API Admin"
-  hello-file: "./conf/admin/hello.html"  #优先使用file
+  hello-file: "./conf/admin/hello.html"  # the file takes precedence
   hello: ""
   # ID Server and Relay Server ports https://github.com/lejianwen/rustdesk-api/issues/257
   id-server-port: 21116  # ID Server port (for server cmd)
@@ -20,7 +20,7 @@ admin:
 gin:
   api-addr: "0.0.0.0:21114"
   mode: "release" #release,debug,test
-  resources-path: 'resources'  #对外静态文件目录
+  resources-path: 'resources'  # public static files directory
   trust-proxy: ""
 gorm:
   type: "sqlite"

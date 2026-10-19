@@ -13,15 +13,15 @@ import (
 type UserToken struct {
 }
 
-// List 列表
-// @Tags 登录凭证
-// @Summary 登录凭证列表
-// @Description 登录凭证列表
+// List list
+// @Tags Login token
+// @Summary Login token list
+// @Description Login token list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param user_id query int false "用户ID"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param user_id query int false "User ID"
 // @Success 200 {object} response.Response{data=model.UserTokenList}
 // @Failure 500 {object} response.Response
 // @Router /admin/user_token/list [get]
@@ -41,13 +41,13 @@ func (ct *UserToken) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Delete 删除
-// @Tags 登录凭证
-// @Summary 登录凭证删除
-// @Description 登录凭证删除
+// Delete delete
+// @Tags Login token
+// @Summary Login token delete
+// @Description Login token delete
 // @Accept  json
 // @Produce  json
-// @Param body body model.UserToken true "登录凭证信息"
+// @Param body body model.UserToken true "Login token info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/user_token/delete [post]
@@ -82,13 +82,13 @@ func (ct *UserToken) Delete(c *gin.Context) {
 	response.Fail(c, 101, response.TranslateMsg(c, "ItemNotFound"))
 }
 
-// BatchDelete 批量删除
-// @Tags 登录凭证
-// @Summary 登录凭证批量删除
-// @Description 登录凭证批量删除
+// BatchDelete batch delete
+// @Tags Login token
+// @Summary Login token batch delete
+// @Description Login token batch delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.UserTokenBatchDeleteForm true "登录凭证信息"
+// @Param body body admin.UserTokenBatchDeleteForm true "Login token info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/user_token/batchDelete [post]

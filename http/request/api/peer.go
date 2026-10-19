@@ -36,7 +36,7 @@ func (pf *PeerForm) ToPeer() *model.Peer {
 	}
 }
 
-// PersonalAddressBookForm 个人地址簿表单
+// PersonalAddressBookForm personal address book form
 type PersonalAddressBookForm struct {
 	model.AddressBook
 	ForceAlwaysRelay string `json:"forceAlwaysRelay"`

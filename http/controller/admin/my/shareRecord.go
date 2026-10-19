@@ -12,14 +12,14 @@ import (
 type ShareRecord struct {
 }
 
-// List 分享记录列表
-// @Tags 我的分享记录
-// @Summary 分享记录列表
-// @Description 分享记录列表
+// List share record list
+// @Tags My share records
+// @Summary Share record list
+// @Description Share record list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/my/share_record/list [get]
@@ -37,13 +37,13 @@ func (sr *ShareRecord) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Delete 分享记录删除
-// @Tags 我的分享记录
-// @Summary 分享记录删除
-// @Description 分享记录删除
+// Delete delete a share record
+// @Tags My share records
+// @Summary Share record delete
+// @Description Share record delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.ShareRecordForm true "分享记录信息"
+// @Param body body admin.ShareRecordForm true "Share record info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/my/share_record/delete [post]
@@ -78,10 +78,10 @@ func (sr *ShareRecord) Delete(c *gin.Context) {
 	response.Fail(c, 101, response.TranslateMsg(c, "OperationFailed")+err.Error())
 }
 
-// BatchDelete 批量删除我的分享记录
-// @Tags 我的
-// @Summary 批量删除我的分享记录
-// @Description 批量删除我的分享记录
+// BatchDelete batch delete my share records
+// @Tags Mine
+// @Summary Batch delete my share records
+// @Description Batch delete my share records
 // @Accept  json
 // @Produce  json
 // @Param body body admin.PeerShareRecordBatchDeleteForm true "id"

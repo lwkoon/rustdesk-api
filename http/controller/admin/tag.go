@@ -13,10 +13,10 @@ import (
 type Tag struct {
 }
 
-// Detail 标签
-// @Tags 标签
-// @Summary 标签详情
-// @Description 标签详情
+// Detail tag
+// @Tags Tags
+// @Summary Tag detail
+// @Description Tag detail
 // @Accept  json
 // @Produce  json
 // @Param id path int true "ID"
@@ -41,13 +41,13 @@ func (ct *Tag) Detail(c *gin.Context) {
 	return
 }
 
-// Create 创建标签
-// @Tags 标签
-// @Summary 创建标签
-// @Description 创建标签
+// Create create tag
+// @Tags Tags
+// @Summary Create tag
+// @Description Create tag
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response{data=model.Tag}
 // @Failure 500 {object} response.Response
 // @Router /admin/tag/create [post]
@@ -76,16 +76,16 @@ func (ct *Tag) Create(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// List 列表
-// @Tags 标签
-// @Summary 标签列表
-// @Description 标签列表
+// List list
+// @Tags Tags
+// @Summary Tag list
+// @Description Tag list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param is_my query int false "是否是我的"
-// @Param user_id query int false "用户id"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param is_my query int false "Whether it is mine"
+// @Param user_id query int false "User id"
 // @Success 200 {object} response.Response{data=model.TagList}
 // @Failure 500 {object} response.Response
 // @Router /admin/tag/list [get]
@@ -110,13 +110,13 @@ func (ct *Tag) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Update 编辑
-// @Tags 标签
-// @Summary 标签编辑
-// @Description 标签编辑
+// Update edit
+// @Tags Tags
+// @Summary Tag edit
+// @Description Tag edit
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response{data=model.Tag}
 // @Failure 500 {object} response.Response
 // @Router /admin/tag/update [post]
@@ -150,13 +150,13 @@ func (ct *Tag) Update(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Delete 删除
-// @Tags 标签
-// @Summary 标签删除
-// @Description 标签删除
+// Delete delete
+// @Tags Tags
+// @Summary Tag delete
+// @Description Tag delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/tag/delete [post]

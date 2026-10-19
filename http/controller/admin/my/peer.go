@@ -12,18 +12,18 @@ import (
 type Peer struct {
 }
 
-// List 列表
-// @Tags 我的设备
-// @Summary 设备列表
-// @Description 设备列表
+// List list
+// @Tags My devices
+// @Summary Device list
+// @Description Device list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param time_ago query int false "时间"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param time_ago query int false "Time"
 // @Param id query string false "ID"
-// @Param hostname query string false "主机名"
-// @Param uuids query string false "uuids 用逗号分隔"
+// @Param hostname query string false "Hostname"
+// @Param uuids query string false "uuids, comma separated"
 // @Success 200 {object} response.Response{data=model.PeerList}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/peer/list [get]

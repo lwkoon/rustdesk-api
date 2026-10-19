@@ -11,16 +11,16 @@ import (
 
 type Tag struct{}
 
-// List 列表
-// @Tags 我的标签
-// @Summary 标签列表
-// @Description 标签列表
+// List list
+// @Tags My tags
+// @Summary Tag list
+// @Description Tag list
 // @Accept  json
 // @Produce  json
-// @Param page query int false "页码"
-// @Param page_size query int false "页大小"
-// @Param is_my query int false "是否是我的"
-// @Param user_id query int false "用户id"
+// @Param page query int false "Page number"
+// @Param page_size query int false "Page size"
+// @Param is_my query int false "Whether it is mine"
+// @Param user_id query int false "User id"
 // @Success 200 {object} response.Response{data=model.TagList}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/tag/list [get]
@@ -45,13 +45,13 @@ func (ct *Tag) List(c *gin.Context) {
 	response.Success(c, res)
 }
 
-// Create 创建标签
-// @Tags 我的标签
-// @Summary 创建标签
-// @Description 创建标签
+// Create create tag
+// @Tags My tags
+// @Summary Create tag
+// @Description Create tag
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response{data=model.Tag}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/tag/create [post]
@@ -78,13 +78,13 @@ func (ct *Tag) Create(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Update 编辑
-// @Tags 我的标签
-// @Summary 标签编辑
-// @Description 标签编辑
+// Update edit
+// @Tags My tags
+// @Summary Tag edit
+// @Description Tag edit
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response{data=model.Tag}
 // @Failure 500 {object} response.Response
 // @Router /admin/my/tag/update [post]
@@ -133,13 +133,13 @@ func (ct *Tag) Update(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-// Delete 删除
-// @Tags 标签
-// @Summary 标签删除
-// @Description 标签删除
+// Delete delete
+// @Tags Tags
+// @Summary Tag delete
+// @Description Tag delete
 // @Accept  json
 // @Produce  json
-// @Param body body admin.TagForm true "标签信息"
+// @Param body body admin.TagForm true "Tag info"
 // @Success 200 {object} response.Response
 // @Failure 500 {object} response.Response
 // @Router /admin/my/tag/delete [post]
